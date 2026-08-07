@@ -14,10 +14,12 @@
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs}/**/*.ts\" --fix",
     "typeorm": "typeorm-ts-node-commonjs",
-    "migration:generate": "npm run typeorm -- migration:generate -d src/database/data-source.ts",
-    "migration:run": "npm run typeorm -- migration:run -d src/database/data-source.ts",
-    "migration:revert": "npm run typeorm -- migration:revert -d src/database/data-source.ts",
-    "migration:show": "npm run typeorm -- migration:show -d src/database/data-source.ts"
+    "migration": "node src/database/migrations/scripts/migration-wrapper.js",
+    "migration:generate": "node src/database/migrations/scripts/migration-wrapper.js generate",
+    "migration:create": "node src/database/migrations/scripts/migration-wrapper.js create",
+    "migration:run": "node src/database/migrations/scripts/migration-wrapper.js run",
+    "migration:revert": "node src/database/migrations/scripts/migration-wrapper.js revert",
+    "migration:show": "node src/database/migrations/scripts/migration-wrapper.js show"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
