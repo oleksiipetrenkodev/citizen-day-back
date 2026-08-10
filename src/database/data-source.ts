@@ -4,4 +4,7 @@ import { DataSource } from 'typeorm';
 
 import { createDatabaseOptions } from './database.config';
 
-export default new DataSource(createDatabaseOptions(new ConfigService()));
+export default new DataSource({
+  ...createDatabaseOptions(new ConfigService()),
+  migrations: ['src/database/migrations/*{.ts,.js}'],
+});
