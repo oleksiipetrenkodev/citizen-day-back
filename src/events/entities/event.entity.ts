@@ -5,9 +5,6 @@ export class Event {
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @Column({ unique: true })
-    cmsId!: number;
-
     @Column()
     capacity!: number;
 
