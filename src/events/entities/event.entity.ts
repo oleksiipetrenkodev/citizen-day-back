@@ -1,22 +1,19 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('events')
 export class Event {
-    @PrimaryGeneratedColumn()
-    id!: number;
+  @PrimaryGeneratedColumn()
+  id!: number;
 
-    @Column()
-    capacity!: number;
+  @Column()
+  capacity!: number;
 
-    @Column()
-    confirmedCount!: number;
+  @Column({ type: 'timestamp' })
+  registrationStartsAt!: Date;
 
-    @Column({ type: 'timestamp' })
-    registrationStartsAt!: Date;
+  @Column({ type: 'timestamp' })
+  registrationEndsAt!: Date;
 
-    @Column({ type: 'timestamp' })
-    registrationEndsAt!: Date;
-
-    @Column()
-    status!: string;
+  @Column()
+  status!: string; // TODO: add enum
 }

@@ -1,3 +1,3 @@
 export class CreateUserDto {
-    email!: string;
+  email!: string;
 }

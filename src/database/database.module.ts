@@ -16,4 +16,4 @@ import { createDatabaseOptions } from './database.config';
     }),
   ],
 })
-export class DatabaseModule { }
+export class DatabaseModule {}

@@ -1,6 +1,10 @@
-import { IsEmail } from 'class-validator';
+import { IsEmail, IsInt, IsPositive } from 'class-validator';
 
 export class CreateRegistrationDto {
-    @IsEmail()
-    email!: string;
+  @IsEmail()
+  email!: string;
+
+  @IsInt()
+  @IsPositive()
+  eventId!: number;
 }
