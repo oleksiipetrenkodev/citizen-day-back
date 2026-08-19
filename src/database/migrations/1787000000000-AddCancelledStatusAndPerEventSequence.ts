@@ -23,18 +23,9 @@ export class AddCancelledStatusAndPerEventSequence1787000000000 implements Migra
     await queryRunner.query(
       `ALTER TABLE "registrations" ADD CONSTRAINT "UQ_registrations_event_sequence" UNIQUE ("eventId", "sequenceNumber")`,
     );
-
-    // Capacity is now derived from a live COUNT of confirmed registrations,
-    // so the denormalized counter is no longer maintained.
-    await queryRunner.query(
-      `ALTER TABLE "events" DROP COLUMN "confirmedCount"`,
-    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(
-      `ALTER TABLE "events" ADD COLUMN "confirmedCount" integer NOT NULL DEFAULT 0`,
-    );
     await queryRunner.query(
       `ALTER TABLE "registrations" DROP CONSTRAINT "UQ_registrations_event_sequence"`,
     );
