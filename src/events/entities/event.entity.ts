@@ -5,6 +5,12 @@ export class Event {
   @PrimaryGeneratedColumn()
   id!: number;
 
+  // Immutable reference to the CMS entry that owns this event's content.
+  // Stable join key between the CMS, the front end, and registration data
+  // (unlike the editable slug).
+  @Column({ unique: true })
+  cmsId!: string;
+
   @Column()
   capacity!: number;
 

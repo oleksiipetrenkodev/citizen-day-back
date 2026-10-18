@@ -18,10 +18,11 @@ export class EventsService {
     private readonly eventsRepository: Repository<Event>,
     @InjectRepository(Registration)
     private readonly registrationsRepository: Repository<Registration>,
-  ) {}
+  ) { }
 
   create(createEventDto: CreateEventDto): Promise<Event> {
     const event = this.eventsRepository.create({
+      cmsId: createEventDto.cmsId,
       capacity: createEventDto.capacity,
       registrationStartsAt: new Date(createEventDto.registrationStartsAt),
       registrationEndsAt: new Date(createEventDto.registrationEndsAt),
@@ -53,7 +54,8 @@ export class EventsService {
     return `This action updates a #${id} event`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} event`;
+  async remove(id: number) {
+    await this.registrationsRepository.delete({ eventId: id });
+    return this.eventsRepository.delete(id);
   }
 }

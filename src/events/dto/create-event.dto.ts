@@ -7,6 +7,10 @@ import {
 } from 'class-validator';
 
 export class CreateEventDto {
+  @IsString()
+  @IsNotEmpty()
+  cmsId!: string;
+
   @IsInt()
   @IsPositive()
   capacity!: number;

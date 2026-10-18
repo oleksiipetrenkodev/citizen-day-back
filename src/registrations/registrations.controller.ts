@@ -13,7 +13,7 @@ import { UpdateRegistrationDto } from './dto/update-registration.dto';
 
 @Controller('registrations')
 export class RegistrationsController {
-  constructor(private readonly registrationsService: RegistrationsService) {}
+  constructor(private readonly registrationsService: RegistrationsService) { }
 
   @Post()
   create(@Body() createRegistrationDto: CreateRegistrationDto) {
@@ -32,10 +32,9 @@ export class RegistrationsController {
 
   @Patch(':id')
   update(
-    @Param('id') id: string,
-    @Body() updateRegistrationDto: UpdateRegistrationDto,
+    @Param('id') id: string
   ) {
-    return this.registrationsService.update(+id, updateRegistrationDto);
+    return this.registrationsService.update(+id);
   }
 
   @Delete(':id')

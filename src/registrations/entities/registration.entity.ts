@@ -3,14 +3,9 @@ import {
   CreateDateColumn,
   Entity,
   Index,
-  JoinColumn,
-  ManyToOne,
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
-
-import { Event } from '../../events/entities/event.entity';
-import { User } from '../../users/entities/user.entity';
 
 export enum RegistrationStatus {
   CONFIRMED = 'confirmed',
@@ -29,16 +24,8 @@ export class Registration {
   @Column()
   userId!: number;
 
-  @ManyToOne(() => User, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'userId' })
-  user!: User;
-
   @Column()
   eventId!: number;
-
-  @ManyToOne(() => Event, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'eventId' })
-  event!: Event;
 
   @Column({
     type: 'enum',
